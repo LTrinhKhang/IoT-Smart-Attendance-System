@@ -6,6 +6,14 @@ This project presents a custom 2-layer PCB designed for a biometric attendance d
 The design integrates power management, high-speed SPI routing, and mixed-signal layout considerations in a compact form factor.
 
 ---
+# 📄 Schematic Overview
+
+<p align="center">
+  <img src="./images/Schematic_overview.png" width="800">
+</p>
+
+---
+
 
 ## 📷 PCB Layout Overview
 
