@@ -1,0 +1,85 @@
+/* Responsive layout */
+@media (max-width: 992px) {
+    .sidebar {
+      width: 60px;
+    }
+    
+    .sidebar:hover {
+      width: 200px;
+    }
+    
+    .main-content {
+      margin-left: 60px;
+    }
+    
+    .sidebar:hover ~ .main-content {
+      margin-left: 200px;
+    }
+    
+    .dashboard {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .sidebar {
+      width: 50px;
+    }
+    
+    .sidebar:hover {
+      width: 180px;
+    }
+    
+    .main-content {
+      margin-left: 50px;
+      padding: 15px;
+    }
+    
+    .sidebar:hover ~ .main-content {
+      margin-left: 180px;
+    }
+    
+    .dashboard {
+      grid-template-columns: 1fr;
+    }
+    
+    .header {
+      flex-direction: column;
+      gap: 15px;
+    }
+    
+    .search-bar {
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .sidebar {
+      width: 40px;
+    }
+    
+    .sidebar:hover {
+      width: 160px;
+    }
+    
+    .main-content {
+      margin-left: 40px;
+      padding: 10px;
+    }
+    
+    .sidebar:hover ~ .main-content {
+      margin-left: 160px;
+    }
+    
+    .card {
+      padding: 15px;
+    }
+    
+    .chart-container {
+      height: 400px;
+    }
+    
+    .chart-container canvas {
+      height: 350px !important;
+    }
+  }

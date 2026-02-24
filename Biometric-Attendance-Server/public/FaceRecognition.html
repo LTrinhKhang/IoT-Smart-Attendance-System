@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nhận Diện Khuôn Mặt - Hệ Thống Điểm Danh</title>
+
+    <!-- Import CSS -->
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/styleFaceDetec.css">
+    
+    <!-- Custom CSS for Auto Test -->
+    <style>
+        .test-btn {
+            background: linear-gradient(135deg, #ff7b7b, #ff9999) !important;
+            border: 2px solid #ff6b6b !important;
+        }
+        
+        .test-btn:hover {
+            background: linear-gradient(135deg, #ff6b6b, #ff8888) !important;
+            transform: translateY(-2px);
+        }
+        
+        .btn-test {
+            background: linear-gradient(135deg, #4CAF50, #66BB6A);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin: 5px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-test:hover {
+            background: linear-gradient(135deg, #45a049, #5cb85c);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .test-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .test-input {
+            margin: 15px 0;
+        }
+        
+        .test-input label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        .test-input input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        
+        .polling-status {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+        
+        .polling-status h5 {
+            margin: 0 0 10px 0;
+            color: #333;
+        }
+        
+        .polling-status p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+        
+        #pollingInfo span {
+            font-weight: bold;
+            color: #007bff;
+            }
+        
+        /* Styles for new system status */
+        .system-status {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #007bff;
+        }
+        
+        .status-badge {
+            background: #ffc107;
+            color: #212529;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: auto;
+        }
+        
+        .status-badge.active {
+            background: #28a745;
+            color: white;
+        }
+        
+        .status-badge.waiting {
+            background: #6c757d;
+            color: white;
+        }
+        
+        .mode-display {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px;
+            background: #e9ecef;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        
+        .mode-display.attendance {
+            background: #d4edda;
+            color: #155724;
+            border-left: 4px solid #28a745;
+        }
+        
+        .mode-display.register {
+            background: #d1ecf1;
+            color: #0c5460;
+            border-left: 4px solid #17a2b8;
+        }
+        
+        .signal-display {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .signal-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 12px;
+            background: #f8f9fa;
+            border-radius: 6px;
+        }
+        
+        .signal-indicator {
+            font-size: 16px;
+            font-weight: bold;
+        }
+        
+        .signal-indicator.active {
+            color: #28a745;
+        }
+        
+        .signal-indicator.inactive {
+            color: #6c757d;
+        }
+        
+        .current-mode h5,
+        .signal-status h5 {
+            margin-bottom: 10px;
+            color: #495057;
+        }
+
+        .stream-status {
+            margin-top: 10px;
+            padding: 8px 12px;
+            background: #e9ecef;
+            border-radius: 6px;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .stream-status.connected {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .stream-status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .stream-status.connecting {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+    </style>
+</head>
+<body>
+    <!-- Notification Container -->
+    <div id="notification-container"></div>
+
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="spinner"></div>
+        <p>Đang tải mô hình nhận diện...</p>
+    </div>
+
+    <!-- Sidebar -->
+    <nav class="sidebar">
+        <ul>
+            <li><a href="index.html"><i class="fi fi-rr-home"></i> <span>Trang Chủ</span></a></li>
+            <li><a href="attendance.html"><i class="fi fi-rr-document"></i> <span>Danh Sách Lớp</span></a></li>
+            <li><a href="import.html"><i class="fi fi-rr-upload"></i> <span>Nhập Excel</span></a></li>
+            <li><a href="faceRecognition.html" class="fi fi-rr-mode-portrai"><i class="fi fi-rr-face-id"></i> <span>Nhận Diện Khuôn Mặt</span></a></li>
+            <li></li>
+            <li><button id="exportExcel" class="nav-button export-button">
+                <i class="fi fi-rr-download"></i> <span>Xuất Excel</span>
+            </button>
+        </ul>
+        <ul></ul> 
+        <ul></ul>
+        <ul></ul>
+        <ul class="logout-container">
+            <li>
+                <a href="login.html"><i class="fi fi-rr-sign-out-alt"></i> <span>Đăng Xuất</span></a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <h1>Nhận Diện Khuôn Mặt - Điểm Danh</h1>
+            <div class="user-info">
+                <img src="images/avatar (4).jpg" alt="User">
+                <span>Giảng Viên</span>
+            </div>
+        </header>
+
+        <!-- Face Recognition Section -->
+        <section class="face-recognition-section">
+            <div class="camera-container">
+                <div class="camera-wrapper">
+                    <div class="camera-wrapper">
+                        <img id="esp32Stream" src="http://192.168.0.3:81/stream" alt="Live Stream" style="width: 100%; border: 2px solid #333;">
+                        <img id="esp32Snapshot" style="display:none;" crossorigin="anonymous">
+
+                    </div>
+                    <canvas id="overlay"></canvas>
+                </div>
+                
+                <!-- Đã loại bỏ camera controls - tự động stream -->
+
+                <div class="recognition-status">
+                    <div id="status-indicator" class="status-indicator">
+                        <span class="status-text">Đang kết nối stream tự động...</span>
+                    </div>
+                    <div id="stream-status" class="stream-status">
+                        <span id="streamStatusText">Đang kiểm tra kết nối ESP32...</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recognition-panel">
+                <div class="mode-selector">
+                    <h3>Hệ Thống Tự Động</h3>
+                    <div class="system-status">
+                        <div class="status-item">
+                            <i class="fi fi-rr-check"></i>
+                            <span>Điểm danh tự động</span>
+                            <span id="attendanceStatus" class="status-badge">Đang chờ</span>
+                        </div>
+                        <div class="status-item">
+                            <i class="fi fi-rr-user-add"></i>
+                            <span>Đăng ký tự động</span>
+                            <span id="registerStatus" class="status-badge">Đang chờ</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- System Status Panel -->
+                <div id="system-status-panel" class="mode-panel active">
+                    <h4>Trạng Thái Hệ Thống</h4>
+                    
+                    <div class="current-mode">
+                        <h5>Chế Độ Hiện Tại</h5>
+                        <div id="currentModeDisplay" class="mode-display">
+                            <i class="fi fi-rr-time"></i>
+                            <span>Đang chờ tín hiệu từ ESP32...</span>
+                        </div>
+                    </div>
+                    
+                    <div class="signal-status">
+                        <h5>Tín Hiệu ESP32</h5>
+                        <div id="signalStatus" class="signal-display">
+                            <div class="signal-item">
+                                <span>Điểm danh:</span>
+                                <span id="attendanceSignal" class="signal-indicator">●</span>
+                            </div>
+                            <div class="signal-item">
+                                <span>Đăng ký:</span>
+                                <span id="registerSignal" class="signal-indicator">●</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="attendance-results">
+                        <h5>Kết Quả Nhận Diện</h5>
+                        <div id="recognitionResults" class="results-list">
+                            <p class="no-results">Chưa có kết quả nhận diện</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Statistics Panel -->
+                <div class="stats-panel">
+                    <h4>Thống Kê Hôm Nay</h4>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-number" id="totalRecognized">0</span>
+                            <span class="stat-label">Đã nhận diện</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="totalAttended">0</span>
+                            <span class="stat-label">Đã điểm danh</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="recognitionAccuracy">0%</span>
+                            <span class="stat-label">Độ chính xác</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recent Activity -->
+        <section class="recent-activity">
+            <h3>Hoạt Động Gần Đây</h3>
+            <div id="activityList" class="activity-list">
+                <p class="no-activity">Chưa có hoạt động nào</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Face-api.js Library -->
+    <script defer src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+    
+    <!-- Import JavaScript -->
+    <script src="scripts/config.js"></script>
+    <script src="scripts/auth.js"></script>
+    <script src="scripts/faceRecognition.js"></script>
+</body>
+</html>

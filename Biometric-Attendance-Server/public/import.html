@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ Thống Điểm Danh</title>
+
+    <!-- Import CSS -->
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@6.1.15/index.global.min.js"></script>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/import.css">
+</head>
+<body>
+  <!-- Notification Container -->
+  <div id="notification-container"></div>
+
+  <!-- Loading Screen -->
+  <div id="loading-screen">
+      <div class="spinner"></div>
+  </div>
+
+  <!-- Sidebar -->
+  <nav class="sidebar">
+      <ul>
+          <li><a href="index.html"><i class="fi fi-rr-home"></i> <span>Trang Chủ</span></a></li>
+          <li><a href="students.html"><i class="fi fi-rr-users"></i> <span>Danh Sách SV</span></a></li>
+          <li><a href="attendance.html"><i class="fi fi-rr-document"></i> <span>Danh Sách Lớp</span></a></li>
+          <li><a href="import.html"><i class="fi fi-rr-upload"></i> <span>Nhập Excel</span></a></li>
+          <li></li>
+          <li><button id="exportExcel" class="nav-button export-button">
+              <i class="fi fi-rr-download"></i> <span>Xuất Excel</span>
+          </button>
+      </ul>
+      <ul></ul> 
+      <ul></ul>
+      <ul></ul>
+      <ul class="logout-container">
+          <li>
+              <a href="login.html"><i class="fi fi-rr-sign-out-alt"></i> <span>Đăng Xuất</span></a>
+          </li>
+      </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <header>
+        <h2>Nhập Danh Sách Sinh Viên</h2>
+    </header>
+
+    <section class="upload-container">
+        <h3>Chọn File Excel</h3>
+    
+        <!-- Nút Chọn tệp -->
+        <label for="excelFile" class="custom-file-label">Chọn tệp</label>
+        <input type="file" id="excelFile" accept=".xls,.xlsx">
+    
+        <!-- Hiển thị tên file -->
+        <span id="fileName">Không có tệp nào được chọn</span>
+    
+        <!-- Nút Tải Lên -->
+        <button id="uploadFileBtn">Tải Lên</button>
+    </section>
+
+    <!-- Phần hiển thị thông tin lớp học -->
+    <section id="classInfoSection" class="class-info-section hidden">
+        <h3></h3>
+        <div id="classInfo" class="class-info-content"></div>
+    </section>
+    <section id="additionalInfo" class="additional-info hidden">
+        <label for="className">Tên Lớp:</label>
+        <input type="text" id="className" placeholder="Nhập tên lớp">
+
+        <label for="classDay">Chọn Thứ:</label>
+    <select id="classDay">
+        <option value="Monday">Thứ 2</option>
+        <option value="Tuesday">Thứ 3</option>
+        <option value="Wednesday">Thứ 4</option>
+        <option value="Thursday">Thứ 5</option>
+        <option value="Friday">Thứ 6</option>
+        <option value="Saturday">Thứ 7</option>
+        <option value="Sunday">Chủ Nhật</option>
+    </select>
+
+    <label for="classStartTime">Giờ Bắt Đầu:</label>
+    <input type="time" id="classStartTime">
+
+    <label for="classEndTime">Giờ Kết Thúc:</label>
+    <input type="time" id="classEndTime">
+    <!-- Nút lưu vào database -->
+    <button id="saveToDB">Lưu vào Database</button>
+    <button id="cancelUpload">Hủy</button>
+        
+    </section>
+
+    <!-- Phần hiển thị danh sách sinh viên -->
+    <section id="studentListSection" class="student-list-section hidden">
+        <h3>Danh sách sinh viên</h3>
+        <div class="table-container">
+            <table id="previewTable">
+                <thead></thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Phần nhập thông tin bổ sung -->
+    
+</main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module" src="scripts/employee.js"></script>
+    <!-- <script type="module" src="scripts/attendance.js"></script> -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/auth.js"></script>
+    <script src="scripts/config.js"></script>
+    <script src="scripts/uploadExcel.js"></script>
+
+</body>
+</html>

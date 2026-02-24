@@ -1,0 +1,58 @@
+/* Sidebar animations */
+.sidebar {
+    transition: width 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  }
+  
+  .sidebar:hover {
+    width: 220px;
+    box-shadow: 4px 0 12px rgba(0, 0, 0, 0.3);
+  }
+  
+  .sidebar ul li a,
+  .sidebar ul li button.nav-button {
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+  }
+  
+  .sidebar ul li a:hover,
+  .sidebar ul li button.nav-button:hover {
+    transform: translateX(5px);
+  }
+  
+  .sidebar ul li a i,
+  .sidebar ul li button.nav-button i {
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .sidebar ul li a span,
+  .sidebar ul li button.nav-button span {
+    transition: opacity 0.4s ease-in-out;
+  }
+  
+  /* Button hover effects */
+  .btn-hover-effect {
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .btn-hover-effect:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Fade animations */
+  .fade-in {
+    animation: fadeIn 0.5s ease-in;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  .fade-out {
+    animation: fadeOut 0.5s ease-out;
+  }
+  
+  @keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+  }

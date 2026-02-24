@@ -1,0 +1,68 @@
+/* CSS tối ưu cho notifications để tránh lag */
+#notification-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10000;
+    max-width: 350px;
+    pointer-events: none;
+}
+
+.notification {
+    margin-bottom: 10px;
+    padding: 12px 16px;
+    border-radius: 6px;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    animation: slideInRight 0.3s ease-out;
+    transform: translateX(0);
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    will-change: transform, opacity;
+    pointer-events: auto;
+}
+
+.notification.info {
+    background-color: #3498db;
+}
+
+.notification.success {
+    background-color: #2ecc71;
+}
+
+.notification.warning {
+    background-color: #f39c12;
+}
+
+.notification.error {
+    background-color: #e74c3c;
+}
+
+.notification.fadeOut {
+    opacity: 0;
+    transform: translateX(100%);
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Tối ưu GPU acceleration */
+.notification {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* Giới hạn số lượng thông báo hiển thị để tránh lag */
+#notification-container .notification:nth-child(n+6) {
+    display: none;
+}

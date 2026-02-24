@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách điểm danh</title>
+
+    <!-- Import CSS -->
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+  <!-- Notification Container -->
+  <div id="notification-container"></div>
+
+  <!-- Loading Screen -->
+  <div id="loading-screen">
+      <div class="spinner"></div>
+  </div>
+
+  <!-- Sidebar -->
+  <nav class="sidebar">
+      <ul>
+          <li><a href="index.html"><i class="fi fi-rr-home"></i> <span>Trang Chủ</span></a></li>
+          <li><a href="attendance.html"><i class="fi fi-rr-document"></i> <span>Danh Sách Lớp</span></a></li>
+          <li><a href="import.html"><i class="fi fi-rr-upload"></i> <span>Nhập Excel</span></a></li>
+          <li></li>
+          <li><button id="exportExcel" class="nav-button export-button">
+              <i class="fi fi-rr-download"></i> <span>Xuất Excel</span>
+          </button>
+      </ul>
+      <ul></ul> 
+      <ul></ul>
+      <ul></ul>
+      <ul class="logout-container">
+          <li>
+              <a href="login.html"><i class="fi fi-rr-sign-out-alt"></i> <span>Đăng Xuất</span></a>
+          </li>
+      </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main-content">
+      <!-- Header -->
+      <header class="header">
+          <h1>Danh sách điểm danh lớp học trong tuần này</h1>
+          <div class="user-info">
+              <img src="images/avatar (4).jpg" alt="User">
+              <span>Giảng Viên</span>
+          </div>
+      </header>
+      
+      <!-- Dashboard Cards -->
+      <section class="dashboard">
+          <div class="card">
+              <i class="fi fi-rr-users"></i>
+              <h3>Sinh Viên Hôm Nay</h3>
+              <p>120 Sinh Viên</p>
+          </div>
+
+          <div class="card">
+              <i class="fi fi-rr-graduation-cap"></i>
+              <h3>Tổng Sinh Viên</h3>
+              <p>450 Sinh Viên</p>
+          </div>
+
+          <div class="card">
+              <i class="fi fi-rr-time-past"></i>
+              <h3>Lịch Sử Điểm Danh</h3>
+              <p>1250 Lần</p>
+          </div>
+
+          <div class="card">
+          </div>
+      </section>
+
+      <section></section>
+      <div> </div>
+      <section class="student-card" >
+        <h2>Lớp học hôm nay</h2>
+        <div id="class-list"> </div>
+    </section>
+    
+
+      
+
+     
+      
+    
+  </main>
+
+  <!-- Import JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
+  <script type="module" src="scripts/employee.js"></script>
+  <script type="module" src="scripts/attendance.js"></script>
+  <script src="scripts/app.js"></script>
+  <script src="scripts/auth.js"></script>
+  <script src="scripts/calendar.js"></script>
+  <script src="scripts/config.js"></script>
+</body>
+</html>
+

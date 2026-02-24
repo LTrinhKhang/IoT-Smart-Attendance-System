@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Login Register Form</title>
+  <!-- Boxicons CDN -->
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="styles/login.css">
+  <script src="scripts/auth.js" defer></script>
+</head>
+<body>
+  <div class="wrapper">
+    <span class="rotate-bg"></span>
+    <span class="rotate-bg2"></span>
+
+    <!-- Form Đăng Nhập -->
+    <div class="form-box login">
+      <h2 class="title animation" style="--i:0; --j:21">Login</h2>
+      <form onsubmit="adminLogin(event); return false;">
+        <div class="input-box animation" style="--i:1; --j:22">
+          <input type="email" id="adminEmail" required placeholder="">
+          <label for="adminEmail">Email</label>
+          <i class='bx bxs-user'></i>
+        </div>
+
+        <div class="input-box animation" style="--i:2; --j:23">
+          <input type="password" id="adminPassword" required placeholder="">
+          <label for="adminPassword">Password</label>
+          <i class='bx bxs-lock-alt'></i>
+        </div>
+
+        <button type="submit" class="btn animation" style="--i:3; --j:24">Login</button>
+
+        <!-- Hiển thị thông báo lỗi -->
+        <p id="loginMessage" style="color: red; text-align: center;"></p>
+
+        <div class="linkTxt animation" style="--i:5; --j:25">
+          <p>Don't have an account? <a href="#" class="register-link">Sign Up</a></p>
+        </div>
+      </form>
+    </div>
+
+    <div class="info-text login">
+      <h2 class="animation" style="--i:0; --j:20">Welcome Back!</h2>
+      <p class="animation" style="--i:1; --j:21">Please enter your credentials to log in.</p>
+    </div>
+
+    <!-- Form Đăng Ký -->
+    <div class="form-box register">
+      <h2 class="title animation" style="--i:17; --j:0">Sign Up</h2>
+      <form onsubmit="adminSignup(event); return false;">
+        <div class="input-box animation" style="--i:18; --j:1">
+          <input type="text" id="signupUsername" required placeholder="">
+          <label for="signupUsername">Username</label>
+          <i class='bx bxs-user'></i>
+        </div>
+
+        <div class="input-box animation" style="--i:19; --j:2">
+          <input type="email" id="signupEmail" required placeholder="">
+          <label for="signupEmail">Email</label>
+          <i class='bx bxs-envelope'></i>
+        </div>
+
+        <div class="input-box animation" style="--i:20; --j:3">
+          <input type="password" id="signupPassword" required placeholder="">
+          <label for="signupPassword">Password</label>
+          <i class='bx bxs-lock-alt'></i>
+        </div>
+
+        <button type="submit" class="btn animation" style="--i:21; --j:4">Sign Up</button>
+
+        <!-- Hiển thị thông báo đăng ký -->
+        <p id="signupMessage" style="text-align:center; font-size:14px;"></p>
+
+        <div class="linkTxt animation" style="--i:22; --j:5">
+          <p>Already have an account? <a href="#" class="login-link">Login</a></p>
+        </div>
+      </form>
+    </div>
+
+    <div class="info-text register">
+      <h2 class="animation" style="--i:17; --j:0;">Join Us!</h2>
+      <p class="animation" style="--i:18; --j:1;">Sign up to access the system.</p>
+    </div>
+  </div>
+
+  <!-- Script -->
+  
+</body>
+
+</html>

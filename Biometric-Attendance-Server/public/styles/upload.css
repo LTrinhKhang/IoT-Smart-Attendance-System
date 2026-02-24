@@ -1,0 +1,33 @@
+.upload-section {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.upload-section input,
+.upload-section button {
+    width: 100%;
+    margin: 10px 0;
+    padding: 8px;
+}
+
+#previewTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+#previewTable th, #previewTable td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+#previewTable th {
+    background: #f3f3f3;
+}

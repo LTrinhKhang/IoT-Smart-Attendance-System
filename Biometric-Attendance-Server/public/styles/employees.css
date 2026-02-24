@@ -1,0 +1,48 @@
+/* Employee Cards */
+.employee-card {
+    display: grid;
+    align-items: center;
+    background: var(--card-background);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    gap: 15px;
+    color: var(--card-text-color);
+  }
+  
+  .employee-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .employee-card img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .employee-card .info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Employee Table */
+  .employee-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .employee-table th, 
+  .employee-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--input-border-color);
+  }
+  
+  .employee-table th {
+    background-color: var(--header-background);
+    color: var(--header-text-color);
+  }

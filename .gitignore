@@ -1,0 +1,18 @@
+# Node
+node_modules/
+.env
+
+# Arduino / PlatformIO
+.pio/
+build/
+*.bin
+
+# KiCad
+*.kicad_prl
+*-cache.lib
+*-rescue.lib
+*.bak
+
+# OS
+Thumbs.db
+.DS_Store
