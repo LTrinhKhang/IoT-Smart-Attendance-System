@@ -2,7 +2,7 @@
 
 This directory contains the ESP32-S3 firmware for the biometric attendance device. It handles user interaction via a touchscreen, biometric data processing, and communication with the central server.
 
-## 🛠️ Features
+## Features
 
 - **Touchscreen UI**: Built with LVGL for a smooth and intuitive user experience.
 - **Biometric Enrollment**: Supports fingerprint scanning and registration.
@@ -10,14 +10,14 @@ This directory contains the ESP32-S3 firmware for the biometric attendance devic
 - **NTP Sync**: Automatic time synchronization via WiFi.
 - **HTTP Client**: Seamless communication with the Node.js backend.
 
-## 📋 Hardware Requirements
+## Hardware Requirements
 
 - **Microcontroller**: ESP32-S3 (with PSRAM enabled).
 - **Display**: 3.5" or 4.3" TFT with capacitive touch.
 - **Fingerprint Sensor**: R503 or compatible UART sensor.
 - **Camera**: OV2640 or compatible module.
 
-## ⚙️ Configuration
+## Configuration
 
 Before flashing, you must configure the following:
 
@@ -28,7 +28,7 @@ Before flashing, you must configure the following:
     int serverPort = 5500;
     ```
 
-## 🚀 Installation
+## Installation
 
 1.  Open the project in **Arduino IDE** or **VS Code with PlatformIO**.
 2.  Install the required libraries:
@@ -40,7 +40,7 @@ Before flashing, you must configure the following:
 4.  Enable **PSRAM** in the Arduino IDE settings (OPI or QSPI depending on your module).
 5.  Click **Upload**.
 
-## 📁 File Structure
+## File Structure
 
 - `LVGL_PSRAM_1.ino`: Main entry point.
 - `lvgl_ui.cpp/h`: UI screens and logic.
