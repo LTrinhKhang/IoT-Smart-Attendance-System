@@ -2,7 +2,7 @@
 
 This is the backend server for the IoT Smart Attendance System. It provides a REST API for the ESP32-S3 device and a web dashboard for management.
 
-## 🚀 Features
+## Features
 
 - **Employee/Student Management**: CRUD operations for attendance participants.
 - **Attendance Logging**: Real-time logging from both fingerprint and face recognition.
@@ -10,13 +10,13 @@ This is the backend server for the IoT Smart Attendance System. It provides a RE
 - **Real-time Dashboard**: Monitor attendance as it happens.
 - **Data Export**: Export attendance records (e.g., to Excel/XLSX).
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Backend**: Node.js, Express.
 - **Database**: MySQL.
 - **Frontend**: HTML, CSS, JavaScript (Vanilla), FullCalendar.
 
-## ⚙️ Setup Instructions
+## Setup Instructions
 
 ### 1. Prerequisites
 - Node.js installed.
@@ -50,7 +50,7 @@ node server/index.js
 ```
 The server will start on `http://localhost:5500`.
 
-## 📁 File Structure
+## File Structure
 
 - `server/index.js`: Main entry point.
 - `server/controllers/`: Business logic for each route.
